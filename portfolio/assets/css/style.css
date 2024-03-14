@@ -108,8 +108,21 @@ body{
     border-radius: 2em;
 }
 
+.cv-block.info .group .organizationTL{
+    font-size: 0.85em;
+    background-color: #bc00dd;
+    display: inline-block;
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 2em;
+}
+
+
 .cv-block.info .education.group .organization{
     background-color: #20c997; 
+}
+.cv-block.info .education.group .organizationTL{
+    background-color: #bc00dd; 
 }
 
 .cv-block.info .group .item{
