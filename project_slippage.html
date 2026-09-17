@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>포트폴리오</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+  </head>
+  <body>
+   <nav class="navbar fixed-top navbar-expand-lg navbar-dark page-navbar gradient">
+      <div class="container">
+        <a class="navbar-brand logo" href="#">김도균의 포트폴리오</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item item">
+              <a class="nav-link back-link" href="index.html#projects">← 포트폴리오로 돌아가기</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <main class="page cv-page">
+      <section class="cv-block block-intro border-bottom">
+        <div class="container">
+          <div class="avatar">
+            <img class="img-fluid rounded-circle" src="assets/img/avatar.jpg">
+          </div>
+          <p>안녕하십니까! <strong>AI/컴퓨터비전 엔지니어</strong> 김도균입니다. <br>컴퓨터비전, 강화학습, 핀테크 AI까지 — 문제를 끝까지 파고드는 개발자입니다.</p>
+          <a href="https://github.com/dogyun0420" class="btn btn-outline-primary">Git hub</a>
+        </div>
+      </section>
+      <section class="cv-block info">
+        <div class="container">
+          <div class="work-experience group" id="work-experience">
+            <h2 class="text-center">슬리피지 최소화 주식 주문집행 전략</h2>
+
+            <div class="item">
+              <div class="row">
+                <div class="col-md-6">
+                  <h3>AI 기반 주식 주문집행 알고리즘 개발</h3>
+                  <h4 class="organization">서울대학교 KDT 핀테크 AI 과정</h4><h4 class="organizationTL">법무법인 영진 &amp; 한국투자증권 캡스톤</h4>
+                </div>
+                <div class="col-md-6">
+                  <time class="period">2025.04 - 2025.07 (3개월)</time>
+                </div>
+              </div>
+              <p>서울대학교 빅데이터·AI·핀테크 KDT 교육 과정에서 법무법인 영진을 캡스톤 파트너로, 한국투자증권 OpenAPI로 실제 KRX 틱데이터를 확보해 진행한 5인 팀 프로젝트입니다. 기관 투자자가 대량 주문을 집행할 때 발생하는 시장 충격과 슬리피지 비용을 줄이기 위해, 기존 TWAP/VWAP 같은 고정 규칙 전략의 한계를 딥러닝 예측 모델과 강화학습(PPO)으로 보완하는 동적 주문집행 알고리즘을 설계했습니다. (팀원: 김도균, 손정민, 이수빈, 이현창, 한성훈)</p>
+
+              <h3 style="margin-top: 30px;">데이터</h3>
+              <p class="text-muted">한국거래소(KRX) 호가장·체결장 틱데이터 · 대상 종목: 삼성전자(005930, 고유동성 대표 종목) · 메리츠금융지주(138040, 저유동성 대표 종목) · 기간: 2024.04.01 ~ 2025.04.30 (13개월) · 초당 25건 이상의 고빈도 이벤트</p>
+              <img src="assets/img/slippage-stock-selection.png" alt="종목 선정: 삼성전자 vs 메리츠금융지주 비교">
+
+              <h3 style="margin-top: 30px;">파이프라인 &amp; 모델 구조</h3>
+              <p class="text-muted">전처리된 시장 미시구조 피처를 LSTM·Transformer·RandomForest 예측 모델(Predictor DL)의 입력으로 사용하고, 그 출력을 Aggregator를 거쳐 PPO 강화학습 모델의 상태(State)로 전달합니다. PPO는 이 상태를 바탕으로 시장 상황에 맞는 주문집행 전략 비중을 동적으로 조정합니다.</p>
+              <img src="assets/img/slippage-ppo-architecture.png" alt="PPO 강화학습 기반 주문집행 아키텍처">
+
+              <h3 style="margin-top: 30px;">전략 백테스트 &amp; 결과</h3>
+              <p class="text-muted">TWAP·VWAP·POV·Robust-TWAP·Anchored TWAP 등 다수의 룰베이스·적응형 전략을 자체 구현한 백테스터로 검증하고, 실행률(Exec Rate)·슬리피지·최종 스코어를 정량 비교했습니다. 일부 전략(Robust-TWAP, Pegging 등)은 슬리피지는 낮지만 체결률이 100%에 못 미치는 트레이드오프가 확인되어, PPO 보상함수에 체결률 항을 포함시켜 슬리피지와 체결률을 동시에 고려하도록 설계했습니다.</p>
+              <img src="assets/img/slippage-strategy-heatmap.png" alt="전략별 실행률·슬리피지·최종 스코어 히트맵">
+
+              <div class="highlight-box" style="margin-top: 20px;">
+                <b>문제</b> 초기 단일 모델(Transformer/LSTM/RandomForest)의 방향성 예측 Macro F1이 0.36~0.41 수준에 그치고, 데이터 불균형으로 예측이 중앙값(변동 없음)에 쏠림 &nbsp;→&nbsp;
+                <b>원인</b> 클래스 불균형과 단일 모델 구조의 한계로 각 모델이 시장의 일부 국면만 부분적으로 포착 &nbsp;→&nbsp;
+                <b>해결</b> Soft Voting/Stacking 앙상블과 도메인 기반 파생 피처(Expected Slippage, MicroPrice, Order Book Imbalance 등)를 추가해 예측 신호의 안정성과 일반화 성능을 개선. ABIDES 기반 시장 시뮬레이터는 계산 복잡도·정합성 한계로, 실제 틱데이터 기반의 커스텀 백테스터를 직접 구현해 전략을 검증했습니다.
+              </div>
+
+              <div class="tag-row">
+                <span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">LSTM</span><span class="tag">Transformer</span><span class="tag">RandomForest</span><span class="tag">PPO / 강화학습</span><span class="tag">한국투자증권 OpenAPI</span><span class="tag">백테스팅</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </section>
+      <footer class="page-footer">
+        <div class="container">
+
+        </div>
+      </footer>
+    </main>
+  </body>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="assets/js/script.js"></script>
+</html>
